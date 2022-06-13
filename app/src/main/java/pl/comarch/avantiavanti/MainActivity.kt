@@ -1,5 +1,6 @@
 package pl.comarch.avantiavanti
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +20,10 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             totalScore = findViewById<EditText>(R.id.scoreTeamLeft).text.toString().toInt() +
                     findViewById<EditText>(R.id.scoreTeamRight).text.toString().toInt()
-            Toast.makeText(this, "Zagłosowano", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this, "Zagłosowano", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, SummaryActivity::class.java)
+            intent.putExtra("TotalScore", totalScore)
+            startActivity(intent)
         }
         Log.i("Lifecycle", "onCreate")
     }
