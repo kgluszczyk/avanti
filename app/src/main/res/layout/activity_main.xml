@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/labelTeamRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BELGIA"
+        app:layout_constraintBottom_toTopOf="@id/scoreTeamRight"
+        app:layout_constraintEnd_toEndOf="@+id/imgTeamRight"
+        app:layout_constraintStart_toStartOf="@+id/imgTeamRight"
+        app:layout_constraintTop_toBottomOf="@+id/imgTeamRight" />
+
+    <ImageView
+        android:id="@+id/imgTeamLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@id/labelTeamLeft"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imgTeamRight"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelTeamLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="POLSKA"
+        app:layout_constraintBottom_toTopOf="@+id/scoreTeamLeft"
+        app:layout_constraintEnd_toEndOf="@+id/imgTeamLeft"
+        app:layout_constraintStart_toStartOf="@+id/imgTeamLeft"
+        app:layout_constraintTop_toBottomOf="@+id/imgTeamLeft" />
+
+    <ImageView
+        android:id="@+id/imgTeamRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@id/labelTeamRight"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgTeamLeft"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/scoreTeamLeft"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgTeamLeft"
+        app:layout_constraintStart_toStartOf="@+id/imgTeamLeft"
+        app:layout_constraintTop_toBottomOf="@id/labelTeamLeft" />
+
+    <EditText
+        android:id="@+id/scoreTeamRight"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgTeamRight"
+        app:layout_constraintStart_toStartOf="@+id/imgTeamRight"
+        app:layout_constraintTop_toBottomOf="@id/labelTeamRight" />
+
+    <Button
+        android:id="@+id/action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zaglosuj!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scoreTeamRight" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
