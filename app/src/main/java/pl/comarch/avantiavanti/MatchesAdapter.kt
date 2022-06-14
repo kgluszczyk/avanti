@@ -1,5 +1,6 @@
 package pl.comarch.avantiavanti
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 import java.util.Locale.getDefault
 
-class MatchesAdapter(var matchesList: List<Match>) : RecyclerView.Adapter<MatchViewHolder>() {
+class MatchesAdapter(var matchesList: List<Match>, var actionClick: (Match) -> Unit) : RecyclerView.Adapter<MatchViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_match, parent, false)
         return MatchViewHolder(view)
@@ -21,6 +22,10 @@ class MatchesAdapter(var matchesList: List<Match>) : RecyclerView.Adapter<MatchV
 
         host.text = match.hostDisplayName()
         opponent.text =  match.guestDisplayName()
+
+        holder.itemView.setOnClickListener {
+            actionClick(match)
+        }
     }
 
     override fun getItemCount() = matchesList.size

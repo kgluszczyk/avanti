@@ -7,9 +7,15 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val hostKey = "Host"
+    }
 
     var totalScore: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +31,10 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("TotalScore", totalScore)
             startActivity(intent)
         }
+        findViewById<TextView>(R.id.labelTeamLeft).text = intent.getStringExtra(hostKey).toString()
+        findViewById<TextView>(R.id.labelTeamRight).text = intent.getStringExtra("Opponent").toString()
+        intent.getIntExtra("Opponent", -1).toString()
+
         Log.i("Lifecycle", "onCreate")
     }
 
