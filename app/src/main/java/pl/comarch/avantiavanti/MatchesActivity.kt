@@ -19,7 +19,7 @@ class MatchesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matches)
         val recyclerView = findViewById<RecyclerView>(R.id.matches_list)
-        //recyclerView.
+        recyclerView.adapter = MatchesAdapter(matches)
 
     }
 }
