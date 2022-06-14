@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MatchesActivity : AppCompatActivity() {
 
-    val matches = listOf(
+    var matches = listOf(
         Match(host = "PL", opponent = "PT"),
         Match(host = "PL", opponent = "MX"),
         Match(host = "NU", opponent = "MX"),
@@ -19,6 +19,7 @@ class MatchesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matches)
+        matches = NetworkService.avantiService.getMatches()
         val recyclerView = findViewById<RecyclerView>(R.id.matches_list)
         recyclerView.adapter = MatchesAdapter(matches){
             val intent = Intent(this, MainActivity::class.java)
