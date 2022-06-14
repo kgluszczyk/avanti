@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
+import java.util.Locale.getDefault
 
 class MatchesAdapter(var matchesList: List<Match>) : RecyclerView.Adapter<MatchViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
@@ -16,15 +18,19 @@ class MatchesAdapter(var matchesList: List<Match>) : RecyclerView.Adapter<MatchV
         val match = matchesList[position]
         val host = holder.itemView.findViewById<TextView>(R.id.host)
         val opponent = holder.itemView.findViewById<TextView>(R.id.opponent)
-        host.text = match.host
-        opponent.text = match.opponent
+
+        host.text = match.hostDisplayName()
+        opponent.text =  match.guestDisplayName()
     }
 
     override fun getItemCount() = matchesList.size
 
 }
 
-class MatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class MatchViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
+fun Locale.displayCountry(countryCode : String) =  Locale(getDefault().language, countryCode).displayCountry
 
-}
+fun Match.hostDisplayName() = getDefault().displayCountry(host)
+
+fun Match.guestDisplayName() = getDefault().displayCountry(opponent)
