@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import java.util.*
 import java.util.Locale.getDefault
 
-class MatchesAdapter(var matchesList: List<Match>, var actionClick: (Match) -> Unit) : RecyclerView.Adapter<MatchViewHolder>() {
+class MatchesAdapter(var matchesList: List<Match> = emptyList(), var actionClick: (Match) -> Unit) : RecyclerView.Adapter<MatchViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_match, parent, false)
         return MatchViewHolder(view)
@@ -38,6 +38,11 @@ class MatchesAdapter(var matchesList: List<Match>, var actionClick: (Match) -> U
     }
 
     override fun getItemCount() = matchesList.size
+
+    fun updateDate(list: List<Match>){
+        matchesList = list
+        notifyDataSetChanged()
+    }
 
 }
 
