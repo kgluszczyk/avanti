@@ -20,4 +20,7 @@ interface AvantiService {
 
     @GET("fake-server-avanti/matches")
     fun getMatches(): Call<List<Match>>
+
+    @GET("fake-server-avanti/matches")
+    suspend fun getMatches2(): List<Match>
 }

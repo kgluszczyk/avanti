@@ -4,12 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 
 class MatchesActivity : AppCompatActivity() {
 
     lateinit var adapter: MatchesAdapter
+    val activityScope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,19 +27,29 @@ class MatchesActivity : AppCompatActivity() {
             startActivity(intent)
         }
         recyclerView.adapter = adapter
-        NetworkService.avantiService.getMatches().enqueue(object : retrofit2.Callback<List<Match>>{
-            override fun onResponse(call: Call<List<Match>>, response: Response<List<Match>>) {
-               val matches = response.body() ?: emptyList()
-                App.database.getMatchesDao().insert(matches)
 
-                adapter.updateDate(App.database.getMatchesDao().getAll())
+/*        val task1 = Thread {
+            val matches =  NetworkService.avantiService.getMatches().execute().body() ?: emptyList()
+            App.database.getMatchesDao().insert(matches)
+            val matchesFromDb = App.database.getMatchesDao().getAll()
+            runOnUiThread {
+                adapter.updateDate(matchesFromDb)
             }
+        }
+        task1.start()*/
 
-            override fun onFailure(call: Call<List<Match>>, t: Throwable) {
-                TODO("Not yet implemented")
+        activityScope.launch {
+            val matches = NetworkService.avantiService.getMatches2()
+            App.database.getMatchesDao().insert(matches)
+            val matchesFromDb = App.database.getMatchesDao().getAll()
+            runOnUiThread {
+                adapter.updateDate(matchesFromDb)
             }
+        }
+    }
 
-        })
-
+    override fun onDestroy() {
+        super.onDestroy()
+        activityScope.cancel()
     }
 }

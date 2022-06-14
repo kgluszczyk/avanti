@@ -13,7 +13,6 @@ class App : Application() {
         super.onCreate()
         database =
             Room.databaseBuilder(this, Database::class.java, "appDatabase")
-                .allowMainThreadQueries()
                 .build()
     }
 }
