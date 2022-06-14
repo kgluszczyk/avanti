@@ -6,12 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="0dp"
+        style="@style/Theme.AvantiAvanti.Cokolowiek"
+        android:layout_height="64dp"
+        app:title="GLOSOWANIE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/labelTeamRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BELGIA"
+        android:text="@string/belgia"
         app:layout_constraintBottom_toTopOf="@id/scoreTeamRight"
         app:layout_constraintEnd_toEndOf="@+id/imgTeamRight"
         app:layout_constraintStart_toStartOf="@+id/imgTeamRight"
