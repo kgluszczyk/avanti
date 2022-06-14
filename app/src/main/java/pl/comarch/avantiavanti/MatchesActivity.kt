@@ -24,6 +24,7 @@ class MatchesActivity : AppCompatActivity() {
         NetworkService.avantiService.getMatches().enqueue(object : retrofit2.Callback<List<Match>>{
             override fun onResponse(call: Call<List<Match>>, response: Response<List<Match>>) {
                matches = response.body() ?: emptyList()
+                App.database.getMatchesDao().insert(matches)
                 val recyclerView = findViewById<RecyclerView>(R.id.matches_list)
                 recyclerView.adapter = MatchesAdapter(matches){
                     val intent = Intent(this@MatchesActivity, MainActivity::class.java)

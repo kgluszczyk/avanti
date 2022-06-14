@@ -1,3 +1,12 @@
 package pl.comarch.avantiavanti
 
-data class Match(var host: String, var opponent: String, var imageUrl: String? = null)
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class Match(
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
+    var host: String,
+    var opponent: String,
+    var imageUrl: String? = null
+)
