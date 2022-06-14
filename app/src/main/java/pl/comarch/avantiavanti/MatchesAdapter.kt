@@ -4,8 +4,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import java.util.*
 import java.util.Locale.getDefault
 
@@ -19,6 +21,13 @@ class MatchesAdapter(var matchesList: List<Match>, var actionClick: (Match) -> U
         val match = matchesList[position]
         val host = holder.itemView.findViewById<TextView>(R.id.host)
         val opponent = holder.itemView.findViewById<TextView>(R.id.opponent)
+
+        val image = holder.itemView.findViewById<ImageView>(R.id.image)
+
+        Glide.with(image)
+            .load(match.imageUrl)
+            .centerCrop()
+            .into(image)
 
         host.text = match.hostDisplayName()
         opponent.text =  match.guestDisplayName()
